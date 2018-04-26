@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     articles: [],
-    article: {}
+    article: {},
+    ownArticle: []
   },
   mutations: {
     getAllArticles (state) {
@@ -27,6 +28,43 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    signin (state, payload) {
+      axios.post('http://localhost:3000/user/signin', payload, {})
+        .then(response => {
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('status', 'connected')
+          location.reload()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    signout (state) {
+      localStorage.clear()
+      location.reload()
+    },
+    signup (state, payload) {
+      axios.post('http://localhost:3000/user/signup', payload, {})
+        .then(response => {
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('status', 'connected')
+          location.reload()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getOwnArticles (state) {
+      axios.post('http://localhost:3000/article/readbyauthor', {}, {
+        headers: {token: localStorage.getItem('token')}
+      })
+        .then(response => {
+          state.ownArticle = response.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   actions: {
@@ -35,6 +73,15 @@ export default new Vuex.Store({
     },
     getOneArticle ({commit}, payload) {
       commit('getOneArticle', payload)
+    },
+    signin ({commit}, payload) {
+      commit('signin', payload)
+    },
+    signup ({commit}, payload) {
+      commit('signup', payload)
+    },
+    getOwnArticles ({commit}) {
+      commit('getOwnArticles')
     }
   }
 })

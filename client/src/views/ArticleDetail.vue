@@ -14,14 +14,14 @@
       <div class='collapse navbar-collapse order-2 navbarCollapse2'>
         <div class='navbar-collapse dual-collapse2'>
           <ul class='navbar-nav ml-auto'>
-            <div v-if="statusLogin">
+            <div v-if="statusLogin" class="form-inline">
               <li class="nav-item">
                 <a class='nav-link'>
-                    My Article
+                    <router-link to="/myarticle">My Article</router-link>
                   </a>
               </li>
               <li class="nav-item">
-                <a class='nav-link'>
+                <a class='nav-link' @click="signout">
                     Sign Out
                   </a>
               </li>
@@ -65,11 +65,16 @@ export default {
     }
   },
   methods: {
-
+    signout () {
+      this.$store.commit('signout')
+    }
   },
   created: function () {
     this.$store.dispatch('getOneArticle', this.id)
-    console.log(this.article)
+    let status = localStorage.getItem('status')
+    if (status === 'connected') {
+      this.statusLogin = true
+    }
   }
 }
 </script>

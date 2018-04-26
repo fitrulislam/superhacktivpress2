@@ -1,5 +1,5 @@
 <template>
-<div class='main'>
+<div class="main">
   <header class='navbar'>
     <nav class='navbar navbar-expand-lg navbar-dark bg-info fixed-top'>
       <div class='collapse navbar-collapse order-0 navbarCollapse1'>
@@ -17,23 +17,22 @@
     <div style="height: 100vh">
       <div class="flex-center flex-column">
         <div class="form">
-          <p class="h4 text-center mb-4">Sign in</p>
+          <p class="h4 text-center mb-4">Sign Up</p>
           <div class="md-form">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" class="form-control" placeholder="username" v-model="username">
+            <input type="text" class="form-control" placeholder="Name" v-model="name">
           </div>
           <div class="md-form">
-            <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" class="form-control" placeholder="password" v-model="password">
+            <input type="text" class="form-control" placeholder="Email" v-model="email">
+          </div>
+          <div class="md-form">
+            <input type="text" class="form-control" placeholder="Username" v-model="username">
+          </div>
+          <div class="md-form">
+            <input type="password" class="form-control" placeholder="Password" v-model="password">
           </div>
           <div class="text-center mt-4">
-            <button class="btn btn-default" type="submit" @click="forSignIn">Sign In</button>
+            <button class="btn btn-default" type="submit" @click="forSignUp">Sign Up</button>
           </div>
-        </div>
-        <div class="">
-          <p>Don't have an account? Please
-            <router-link to="/signup">Sign Up</router-link>
-          </p>
         </div>
       </div>
     </div>
@@ -43,20 +42,24 @@
 
 <script>
 export default {
-  name: 'signin',
+  name: 'signup',
   data () {
     return {
+      name: '',
+      email: '',
       username: '',
       password: ''
     }
   },
   methods: {
-    forSignIn () {
+    forSignUp () {
       let form = {
+        name: this.name,
+        email: this.email,
         username: this.username,
         password: this.password
       }
-      this.$store.dispatch('signin', form)
+      this.$store.dispatch('signup', form)
     }
   }
 }

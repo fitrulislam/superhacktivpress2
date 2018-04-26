@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import ArticleDetail from './views/ArticleDetail.vue'
 import SignIn from './views/SignIn.vue'
+import SignUp from './views/SignUp.vue'
+import MyArticle from './views/MyArticle.vue'
 
 Vue.use(Router)
 
@@ -22,7 +24,41 @@ export default new Router({
     {
       path: '/signin',
       name: 'signin',
-      component: SignIn
+      component: SignIn,
+      beforeEnter: (to, from, next) => {
+        let status = localStorage.getItem('status')
+        if (status === 'connected') {
+          next('/')
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp,
+      beforeEnter: (to, from, next) => {
+        let status = localStorage.getItem('status')
+        if (status === 'connected') {
+          next('/')
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/myarticle',
+      name: 'myarticle',
+      component: MyArticle,
+      beforeEnter: (to, from, next) => {
+        let status = localStorage.getItem('status')
+        if (status === 'connected') {
+          next()
+        } else {
+          next('/')
+        }
+      }
     }
   ]
 })

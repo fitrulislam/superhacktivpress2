@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import '@/assets/css/bootstrap.min.css'
 import '@/assets/css/mdb.min.css'
-import '@/assets/css/bootstrap-datetimepicker.css'
+// import '@/assets/js/bootstrap.min.js'
 
 Vue.config.productionTip = false
 
