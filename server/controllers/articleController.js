@@ -89,6 +89,24 @@ module.exports = {
         })
       })
   },
+  edit: (req,res) => {
+    Article.update({
+      _id: req.params.id
+    },{
+      $set: req.body
+    })
+      .then(question => {
+        res.status(200).json({
+          message: 'data updated',
+          data: question
+        })
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: 'server error'
+        })
+      })
+  },
   remove: (req,res) => {
     Article.findByIdAndRemove({
       _id: req.params.id

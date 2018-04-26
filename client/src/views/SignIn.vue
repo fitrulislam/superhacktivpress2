@@ -6,7 +6,7 @@
         <ul class='navbar-nav'>
           <li class='nav-item'>
             <a class='nav-link navbar-brand'>
-              <router-link to="/">Super Hacktivpress</router-link>
+              <router-link to="/" style="color: white !important;">Super Hacktivpress</router-link>
             </a>
           </li>
         </ul>
@@ -19,11 +19,9 @@
         <div class="form">
           <p class="h4 text-center mb-4">Sign in</p>
           <div class="md-form">
-            <i class="fa fa-user prefix grey-text"></i>
             <input type="text" class="form-control" placeholder="username" v-model="username">
           </div>
           <div class="md-form">
-            <i class="fa fa-lock prefix grey-text"></i>
             <input type="password" class="form-control" placeholder="password" v-model="password">
           </div>
           <div class="text-center mt-4">

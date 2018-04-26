@@ -6,7 +6,7 @@
         <ul class='navbar-nav'>
           <li class='nav-item'>
             <a class='nav-link navbar-brand'>
-              <router-link to="/">Super Hacktivpress</router-link>
+              <router-link to="/" style="color: white !important;">Super Hacktivpress</router-link>
             </a>
           </li>
         </ul>

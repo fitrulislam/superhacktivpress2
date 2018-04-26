@@ -6,7 +6,7 @@
           <ul class='navbar-nav'>
             <li class='nav-item'>
               <a class='nav-link navbar-brand'>
-                <router-link to="/">Super Hacktivpress</router-link>
+                <router-link to="/" style="color: white !important;">Super Hacktivpress</router-link>
               </a>
             </li>
           </ul>
@@ -40,7 +40,7 @@
         </div>
         <div class="d-flex">
           <button type="button" class="btn btn-sm btn-primary">
-            <router-link to="/addarticle" style="color: white !important;">Add Article</router-link>
+            <router-link to="addarticle" style="color: white !important;">Add Article</router-link>
           </button>
         </div>
         <table class="table">
@@ -58,8 +58,10 @@
                 <router-link type="button" class="btn btn-sm btn-default" :to="{ name: 'articleDetail', params: {id: article._id} }">
                   Details
                 </router-link>
-                <button type="button" class="btn btn-sm btn-info">Edit</button>
-                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                <button type="button" class="btn btn-sm btn-info">
+                  <router-link :to="{ name: 'editarticle', params: {id: article._id} }" style="color: white !important;">Edit Article</router-link>
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" @click="deleteArticle(article._id)">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -80,6 +82,10 @@ export default {
   methods: {
     signout () {
       this.$store.commit('signout')
+    },
+    deleteArticle (id) {
+      this.$store.dispatch('deleteArticle', id)
+      this.$store.commit('delete', id)
     }
   },
   computed: {

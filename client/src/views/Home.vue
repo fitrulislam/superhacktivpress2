@@ -6,7 +6,7 @@
           <ul class='navbar-nav'>
             <li class='nav-item'>
               <a class='nav-link navbar-brand'>
-                <router-link to="/">Super Hacktivpress</router-link>
+                <router-link to="/" style="color: white !important;">Super Hacktivpress</router-link>
               </a>
             </li>
           </ul>
@@ -17,7 +17,7 @@
               <div v-if="statusLogin" class="form-inline">
                 <li class="nav-item">
                   <a class='nav-link'>
-                    <router-link to="/myarticle">My Article</router-link>
+                    <router-link to="/myarticle" style="color: white !important;">My Article</router-link>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -29,7 +29,7 @@
               <div v-else>
                 <li class='nav-item'>
                   <a class='nav-link'>
-                    <router-link to="/signin">Sign In</router-link>
+                    <router-link to="/signin" style="color: white !important;">Sign In</router-link>
                   </a>
                 </li>
               </div>

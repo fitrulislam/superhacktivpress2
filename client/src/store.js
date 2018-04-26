@@ -65,6 +65,48 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    addArticle (state, payload) {
+      axios.post('http://localhost:3000/article/create', payload, {
+        headers: {token: localStorage.getItem('token')}
+      })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    delete (state, payload) {
+      let array = []
+      state.ownArticle.forEach(article => {
+        if (article._id !== payload) {
+          array.push(article)
+        }
+      })
+      state.ownArticle = array
+    },
+    deleteArticle (state, payload) {
+      axios.post(`http://localhost:3000/article/remove/${payload}`, {}, {
+        headers: {token: localStorage.getItem('token')}
+      })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    editArticle (state, payload) {
+      axios.post(`http://localhost:3000/article/edit/${payload[0]}`, payload[1], {
+        headers: {token: localStorage.getItem('token')}
+      })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   actions: {
@@ -82,6 +124,15 @@ export default new Vuex.Store({
     },
     getOwnArticles ({commit}) {
       commit('getOwnArticles')
+    },
+    addArticle ({commit}, payload) {
+      commit('addArticle', payload)
+    },
+    deleteArticle ({commit}, payload) {
+      commit('deleteArticle', payload)
+    },
+    editArticle ({commit}, payload) {
+      commit('editArticle', payload)
     }
   }
 })

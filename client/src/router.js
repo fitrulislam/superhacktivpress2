@@ -5,6 +5,8 @@ import ArticleDetail from './views/ArticleDetail.vue'
 import SignIn from './views/SignIn.vue'
 import SignUp from './views/SignUp.vue'
 import MyArticle from './views/MyArticle.vue'
+import AddArticle from './views/AddArticle.vue'
+import EditArticle from './views/EditArticle.vue'
 
 Vue.use(Router)
 
@@ -59,6 +61,17 @@ export default new Router({
           next('/')
         }
       }
+    },
+    {
+      path: '/addarticle',
+      name: 'addarticle',
+      component: AddArticle
+    },
+    {
+      path: '/editarticle/:id',
+      name: 'editarticle',
+      props: true,
+      component: EditArticle
     }
   ]
 })
